@@ -85,7 +85,6 @@ async def create_restaurant(
     if logo.content_type not in ["image/png", "image/jpeg"]:
         raise HTTPException(status_code=400, detail="Solo se permiten archivos PNG o JPEG")
 
-    # Guardar imagen en carpeta logos/
     logo_dir = "logos"
     os.makedirs(logo_dir, exist_ok=True)
 
@@ -93,10 +92,8 @@ async def create_restaurant(
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(logo.file, buffer)
 
-    # Crear URL pública
     logo_url = f"http://localhost:8000/logos/{logo.filename}"
 
-    # Crear restaurante en la base de datos
     return crud.create_restaurant(
         db,
         nombre=nombre,
@@ -105,6 +102,7 @@ async def create_restaurant(
         calificacion=calificacion,
         logo_path=logo_url
     )
+
 
 @app.get("/restaurants/", response_model=List[RestaurantOut])
 def read_restaurants(db: Session = Depends(get_db)):
