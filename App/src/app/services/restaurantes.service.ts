@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 export interface Restaurante {
   id?: number;
   nombre: string;
+  direccion: string;
   descripcion: string;
   calificacion: number;
  logo_path?: string;
