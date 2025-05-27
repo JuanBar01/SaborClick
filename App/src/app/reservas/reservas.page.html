@@ -1,17 +1,66 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      RESERVAS
+<ion-header>
+  <ion-toolbar color="primary" class="custom-toolbar">
+    <ion-title class="ion-text-center">
+      <div class="logo-title">
+        <img src="assets/Saborclick.png" alt="Logo" class="logo-image" />
+        <span>SaborClick</span>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Reservar Restaurante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+  <!-- Sección: Selección de fecha y hora -->
+<ion-content class="ion-padding">
+  <div class="calendar-container">
+    <ion-datetime
+      presentation="date-time"
+      [(ngModel)]="selectedDateTime"
+      [min]="today"
+      (ionChange)="onDateChange($event)">
+    </ion-datetime>
+  </div>
+
+
+
+  <!-- Sección: Confirmar reserva -->
+  <ion-button expand="block" color="secondary" (click)="confirmReservation()">
+    Confirmar Reserva
+  </ion-button>
+
+  <!-- Sección: Próximas reservas -->
+  <ion-card *ngIf="nextReservation">
+    <ion-card-header>
+      <ion-card-subtitle>Tu próxima reserva</ion-card-subtitle>
+      <ion-card-title>{{ nextReservation.restaurant }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Fecha: {{ nextReservation.date | date:'fullDate' }} <br>
+      Hora: {{ nextReservation.date | date:'shortTime' }}
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección: Calificación -->
+  <ion-card *ngIf="canRate">
+    <ion-card-header>
+      <ion-card-title>Califica tu experiencia</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-range min="1" max="5" snaps="true" [(ngModel)]="rating">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">5</ion-label>
+      </ion-range>
+      <ion-button expand="block" (click)="submitRating()">Enviar Calificación</ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
+

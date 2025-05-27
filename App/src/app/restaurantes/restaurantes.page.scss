@@ -1,0 +1,19 @@
+.custom-toolbar {
+  --min-height: 80px; /* más alto que el estándar (56px) */
+}
+
+.logo-image {
+  height: 75px; /* puedes subirlo más si deseas */
+  object-fit: contain;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: "ligth";
+  font-family: 'Georgia', serif; /* Ejemplo de fuente elegante */
+}
