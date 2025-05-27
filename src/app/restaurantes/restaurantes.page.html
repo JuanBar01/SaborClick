@@ -1,17 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      RESTAURANTES
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Restaurantes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let restaurante of restaurantes" lines="full" detail="false">
+      <ion-thumbnail slot="start">
+        <img [src]="restaurante.imagen" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ restaurante.nombre }}</h2>
+        <p>
+          <ion-text color="medium">{{ restaurante.descripcion }}</ion-text>
+        </p>
+        <ion-text color="secondary">⭐ {{ restaurante.calificacion }}</ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" color="secondary" shape="round" (click)="agregarRestaurante()">
+    Agregar Restaurante
+  </ion-button>
 </ion-content>
