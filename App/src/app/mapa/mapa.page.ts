@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-mapa',
-  templateUrl: 'mapa.page.html',
-  styleUrls: ['mapa.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
+  standalone: true,
+  imports: [GoogleMapsModule, IonicModule],
+  templateUrl: './mapa.page.html',
+  styleUrls: ['./mapa.page.scss'],
 })
 export class MapaPage {
-  constructor() {}
+  // Centro inicial del mapa (puedes cambiar a la ubicación que quieras)
+  center: google.maps.LatLngLiteral = { lat: 4.7110, lng: -74.0721 }; 
+  zoom = 12;
+
 }

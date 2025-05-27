@@ -9,20 +9,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-header [translucent]="true">
-  <ion-toolbar color="tertiary">
-    <ion-title>
-      Mapa
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mapa</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-content>
+  <google-map
+    height="100%"
+    width="100%"
+    [center]="center"
+    [zoom]="zoom">
+  </google-map>
 </ion-content>
