@@ -8,5 +8,5 @@ export const routes: Routes = [
   {
     path: 'restaurantes',
   loadComponent: () => import('./restaurantes/restaurantes.page').then(m => m.RestaurantesPage)
-  }
+  },
 ];

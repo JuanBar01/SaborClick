@@ -1,36 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+<ion-header>
+  <ion-toolbar color="primary" class="custom-toolbar">
+    <ion-title class="ion-text-center">
+      <div class="logo-title">
+        <img src="assets/Saborclick.png" alt="Logo" class="logo-image" />
+        <span>SaborClick</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-header>
+  <ion-toolbar color="tertiary">
     <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-panding">
+<ion-content class="ion-padding">
+  <div *ngIf="usuario">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ usuario.name }}</ion-card-title>
+        <ion-card-subtitle>{{ usuario.email }}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
 
-  <form (ngSubmit)="onSubmit()">
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="nombre"></ion-input>
+  </ion-item>
 
-    <ion-item>
-       <ion-label position="floating">Usuario</ion-label>
-      <ion-input [(ngModel)]="usuario" name="usuario" required></ion-input>
-    </ion-item>
-     
-    <ion-item>
-       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="contrasena" name="contrasena" required></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="email" type="email"></ion-input>
+  </ion-item>
 
-    <ion-item *ngIf="isRegistering">
-       <ion-label position="floating">Confrimar Contraseña</ion-label>
-      <ion-input [(ngModel)]="confirmarcontrasena" name="confirmarcontrasena" type="password" required></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" type="submit">
-      {{ isRegistering ? 'Crear Cuenta' : 'Iniciar Sesión' }}
-    </ion-button>
-  </form>
-
-  <ion-button fill="clear" expand="block" (click)="toggleMode()">
-    {{ isRegistering ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate' }}
-  </ion-button>
-
+  <ion-button expand="block" color="secondary" (click)="login()">Iniciar sesión / Crear cuenta</ion-button>
 </ion-content>
-

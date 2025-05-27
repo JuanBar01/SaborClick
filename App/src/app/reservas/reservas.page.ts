@@ -14,7 +14,7 @@ export class ReservasPage {
   selectedDateTime: string = '';
   today: string = new Date().toISOString();
 
-  nextReservation: any = null;  // Ejemplo: { restaurant: 'La Pampa', date: new Date() }
+  nextReservation: any = null;
   canRate = false;
   rating: number = 3;
 
