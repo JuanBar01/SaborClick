@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: saborclick-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: saborpass
+      MYSQL_DATABASE: saborclick_db
+      MYSQL_USER: saboradmin
+      MYSQL_PASSWORD: saborpass
+    ports:
+      - "3307:3306"
+    networks:
+      - saborclick-net
+
+  api:
+    build: .
+    container_name: fastapi-saborclick
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    networks:
+      - saborclick-net
+    volumes:
+      - .:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+networks:
+  saborclick-net:
+    driver: bridge
