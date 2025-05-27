@@ -12,8 +12,10 @@ class User(Base):
 
 class Restaurant(Base):
     __tablename__ = "restaurants"
+
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String(100), index=True)
     direccion = Column(String(200))
-    descripcion = Column(String(500))
+    descripcion = Column(String(300))
     calificacion = Column(Float)
+    logo_path = Column(String(255))

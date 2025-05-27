@@ -9,7 +9,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-title>Restaurantes</ion-title>
@@ -18,10 +17,10 @@
 
 <ion-content class="ion-padding">
 
-  <ion-list>
+  <ion-list *ngIf="!mostrarFormulario">
     <ion-item *ngFor="let restaurante of restaurantes" lines="full" detail="false">
       <ion-thumbnail slot="start">
-        <img [src]="restaurante.imagen" />
+        <img [src]="restaurante.logo_path || 'assets/img/restaurante1.jpg'" />
       </ion-thumbnail>
       <ion-label>
         <h2>{{ restaurante.nombre }}</h2>
@@ -32,7 +31,36 @@
       </ion-label>
     </ion-item>
   </ion-list>
-  <ion-button expand="block" color="secondary" shape="round" (click)="agregarRestaurante()">
+
+  <ion-button *ngIf="!mostrarFormulario" expand="block" color="secondary" shape="round" (click)="agregarRestaurante()">
     Agregar Restaurante
   </ion-button>
+
+  <form *ngIf="mostrarFormulario" (submit)="enviarFormulario(); $event.preventDefault()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre" name="nombre" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input [(ngModel)]="direccion" name="direccion" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="descripcion" name="descripcion" required></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Calificación (1 a 5)</ion-label>
+      <ion-input type="number" [(ngModel)]="calificacion" name="calificacion" min="1" max="5" required></ion-input>
+    </ion-item>
+    <div class="archivo-logo">
+      <label for="logo">Logo (PNG o JPEG)</label><br />
+      <input id="logo" type="file" accept="image/png, image/jpeg" (change)="seleccionarArchivo($event)" required />
+    </div>
+
+    <ion-button expand="block" type="submit" color="primary" shape="round">Guardar</ion-button>
+    <ion-button expand="block" color="medium" shape="round" (click)="cancelar()">Cancelar</ion-button>
+  </form>
+
 </ion-content>

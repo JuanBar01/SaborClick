@@ -17,3 +17,14 @@
   color: "ligth";
   font-family: 'Georgia', serif; /* Ejemplo de fuente elegante */
 }
+.archivo-logo {
+  margin: 1em 0;
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  input[type="file"] {
+    width: 100%;
+  }
+}
